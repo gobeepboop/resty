@@ -18,7 +18,7 @@
     },
     "autoload": {
         "psr-4": {
-            "\\Beep\\Resty\\": "src/"
+            "Beep\\Resty\\": "src/"
         }
     }
 }
