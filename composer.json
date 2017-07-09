@@ -1,0 +1,24 @@
+{
+    "name": "beep/resty",
+    "description": "A library that provides commonly used functionality for APIs, such as response envelopes.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Robbie Garvey",
+            "email": "robbie@rnd.studio"
+        }
+    ],
+    "require": {
+        "illuminate/support": "^5.4",
+        "league/fractal": "^0.16.0",
+        "illuminate/container": "^5.4",
+        "illuminate/pagination": "^5.4",
+        "illuminate/http": "^5.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "\\Beep\\Resty\\": "src/"
+        }
+    }
+}
