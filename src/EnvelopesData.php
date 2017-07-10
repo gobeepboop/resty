@@ -11,6 +11,7 @@ use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 use League\Fractal\Resource\Collection;
 use League\Fractal\Resource\Item;
 use League\Fractal\TransformerAbstract;
+use Illuminate\Support\Collection as IlluminateBaseCollection;
 
 trait EnvelopesData
 {
@@ -35,11 +36,16 @@ trait EnvelopesData
         // Validate if the data is a nested array to determine if a collection.
         $isCollection = is_array($data) && is_array(array_first($data)) || ! empty($paginator);
 
+        if (empty($paginator) === true && $data instanceof IlluminateBaseCollection) {
+            $data         = $data->all();
+            $isCollection = true;
+        }
+
         // Build a Fractal resource.
         $resource = ! $isCollection ?
             new Item($data, $transformer, $resourceKey) : new Collection($data, $transformer, $resourceKey);
 
-        if ($resource instanceof Collection) {
+        if (! empty($paginator) && $resource instanceof Collection) {
             $resource->setPaginator(new IlluminatePaginatorAdapter($paginator));
         }
 
